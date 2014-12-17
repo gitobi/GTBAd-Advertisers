@@ -38,7 +38,7 @@ This project aim to mange advertising of GTBAd system for advertisers.
 1. cd GTBAd-Adevertisers
 1. npm install
 1. bower install
-1. bundle install
+1. bundle install --path vendor/bundle
 1. grunt serve
 1. Yeah! You will see the localhost page on your browser!
 
