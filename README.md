@@ -47,7 +47,7 @@ This project aim to mange advertising of GTBAd system for advertisers.
 Please make your pull request contains your feedbacks, features, designs, implementations and of course fix typos.
 We review it and decide whether to merge it.
 
-### Contributers
+### Contributors
 
-@deraru
-@serima
+[@deraru](https://github.com/deraru)
+[@serima](https://github.com/serima)
