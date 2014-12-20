@@ -10,24 +10,58 @@
  */
 angular
   .module('gtbadAdvertisersApp', [
+    'auth0',
+    'angular-storage',
+    'angular-jwt',
+    'ui.router',
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('root', {
+        url: '/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        data: {
+          requiresLogin: true
+        }
       });
+    authProvider.init({
+      domain: 'gitobi.auth0.com',
+      clientID: 'ysqq8S9N9pwsxGmYHmmJ161Tt2ri9rZJ',
+      loginState: 'root'
+    });
+    jwtInterceptorProvider.tokenGetter = ['store', function(store) {
+      return store.get('token');
+    }];
+    $httpProvider.interceptors.push('jwtInterceptor');
+  })
+  .run(function($rootScope, auth, store, jwtHelper, $location) {
+    $rootScope.$on('$locationChangeStart', function() {
+      if (!auth.isAuthenticated) {
+        var token = store.get('token');
+        if (token) {
+          if (!jwtHelper.isTokenExpired(token)) {
+            auth.authenticate(store.get('profile'), token);
+          } else {
+            $location.path('/');
+          }
+        }
+      }
+    });
   });
