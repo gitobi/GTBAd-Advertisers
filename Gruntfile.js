@@ -21,11 +21,30 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  // Load Credentials
+  // sample credentials.json
+  //{
+  //  "aws": {
+  //    "key": "your_s3_key",
+  //    "secret": "your_s3_secret"
+  //  }
+  //}
+  var credentials = grunt.file.readJSON('credentials.json');
+
+  var awsCredentials = {
+    key: credentials.aws.key,
+    secret: credentials.aws.secret
+  };
+
+  grunt.loadNpmTasks('grunt-aws');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
     yeoman: appConfig,
+
+    aws: awsCredentials,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
@@ -385,6 +404,31 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    // Deployment
+    s3: {
+      options: {
+        accessKeyId: '<%= aws.key %>',
+        secretAccessKey: '<%= aws.secret %>',
+        region: 'ap-northeast-1',
+        access: 'public-read',
+        gzip: true
+      },
+      production: {
+        options: {
+          bucket: 'advertisers.kanban.gallery'
+        },
+        cwd: '<%= yeoman.dist %>',
+        src: '**'
+      },
+      staging: {
+        options: {
+          bucket: 'advertisers-staging.kanban.gallery'
+        },
+        cwd: '<%= yeoman.dist %>',
+        src: '**'
+      }
     }
   });
 
@@ -439,4 +483,21 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('deploy', function(environment) {
+    if (environment == 'production') {
+      return grunt.task.run([
+        'build',
+        's3:production'
+      ]);
+    } else if (environment == 'staging') {
+      return grunt.task.run([
+        'build',
+      ]);
+    } else {
+      return grunt.task.run([
+        'deploy:staging'
+      ]);
+    }
+  });
 };
