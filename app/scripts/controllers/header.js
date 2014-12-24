@@ -2,19 +2,20 @@
 
 /**
  * @ngdoc function
- * @name gtbadAdvertisersApp.controller:MainCtrl
+ * @name gtbadAdvertisersApp.controller:HeaderCtrl
  * @description
- * # MainCtrl
+ * # HeaderCtrl
  * Controller of the gtbadAdvertisersApp
  */
 angular.module('gtbadAdvertisersApp')
-  .controller('MainCtrl', function (auth, store, $location, $scope) {
+  .controller('HeaderCtrl', function (auth, store, $location, $scope, Session) {
     $scope.login = function() {
       auth.signin({
         authParams: {
           scope: 'openid profile'
         }
       }, function(profile, token) {
+        Session.save();
         store.set('profile', profile);
         store.set('token', token);
         $location.path('/dashboard');
@@ -26,5 +27,6 @@ angular.module('gtbadAdvertisersApp')
       auth.signout();
       store.remove('provile');
       store.remove('token');
+      $location.path('/');
     };
   });

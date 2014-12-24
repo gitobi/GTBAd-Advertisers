@@ -8,7 +8,6 @@
  * Controller of the gtbadAdvertisersApp
  */
 angular.module('gtbadAdvertisersApp')
-  .controller('DashboardCtrl', function ($scope, auth, Session) {
+  .controller('DashboardCtrl', function ($scope, auth) {
     $scope.auth = auth;
-    Session.save();
   });

@@ -26,10 +26,11 @@ angular
       .state('public', {
         views: {
           'main-container': {
-            templateUrl: 'views/layouts/public-main-container.html'
-          },
+            templateUrl: 'views/layouts/public-main-container.html'          },
           'header-menu': {
-            templateUrl: 'views/layouts/public-header-menu.html'
+            templateUrl: 'views/layouts/public-header-menu.html',
+            controller: 'HeaderCtrl'
+
           }
         }
       })
@@ -37,8 +38,7 @@ angular
         url: '/',
         views: {
           'content': {
-            templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
+            templateUrl: 'views/main.html'
           }
         }
       })
@@ -57,7 +57,9 @@ angular
             templateUrl: 'views/layouts/private-main-container.html'
           },
           'header-menu': {
-            templateUrl: 'views/layouts/private-header-menu.html'
+            templateUrl: 'views/layouts/private-header-menu.html',
+            controller: 'HeaderCtrl'
+
           }
         },
         data: {
