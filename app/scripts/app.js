@@ -23,28 +23,60 @@ angular
   .config(function ($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
-      .state('root', {
+      .state('public', {
+        views: {
+          'main-container': {
+            templateUrl: 'views/layouts/public-main-container.html'
+          },
+          'header-menu': {
+            templateUrl: 'views/layouts/public-header-menu.html'
+          }
+        }
+      })
+      .state('public.root', {
         url: '/',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        views: {
+          'content': {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+          }
+        }
       })
-      .state('about', {
+      .state('public.about', {
         url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+        views: {
+          'content': {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl'
+          }
+        }
       })
-      .state('dashboard', {
-        url: '/dashboard',
-        templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl',
+      .state('private', {
+        views: {
+          'main-container': {
+            templateUrl: 'views/layouts/private-main-container.html'
+          },
+          'header-menu': {
+            templateUrl: 'views/layouts/private-header-menu.html'
+          }
+        },
         data: {
           requiresLogin: true
+        }
+      })
+      .state('private.dashboard', {
+        url: '/dashboard',
+        views: {
+          'content': {
+            templateUrl: 'views/dashboard.html',
+            controller: 'DashboardCtrl'
+          }
         }
       });
     authProvider.init({
       domain: 'gitobi.auth0.com',
       clientID: 'ysqq8S9N9pwsxGmYHmmJ161Tt2ri9rZJ',
-      loginState: 'root'
+      loginState: 'public.root'
     });
     jwtInterceptorProvider.tokenGetter = ['store', function(store) {
       return store.get('token');

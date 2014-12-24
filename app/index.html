@@ -32,47 +32,14 @@
             <a class="navbar-brand">GTBAd Advertisers</a>
           </div>
           <div class="collapse navbar-collapse" id="header-menu">
-            <ul class="nav navbar-nav">
-              <li class="active"><a ng-href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Link</a></li>
-            </ul>
+            <div ui-view="header-menu"></div>
           </div>
         </div>
       </nav>
     </div>
-    <div class="content">
+    <div id="main-container">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-2 col-sm-3 col-md-2" id="sidebar">
-            <div class="sidebar-nav affix" role="complementary">
-              <ul class="nav">
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li class="active"><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-                <li><a href="#">サイドバーメニュー</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-10 col-sm-9 col-md-10" id="main-content">
-            <div class="container-fluid">
-              <div ui-view=""></div>
-            </div>
-          </div>
-        </div>
+        <div ui-view="main-container"></div>
       </div>
     </div>
 
