@@ -485,12 +485,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('deploy', function(environment) {
-    if (environment == 'production') {
+    if (environment === 'production') {
       return grunt.task.run([
         'build',
         's3:production'
       ]);
-    } else if (environment == 'staging') {
+    } else if (environment === 'staging') {
       return grunt.task.run([
         'build',
       ]);
