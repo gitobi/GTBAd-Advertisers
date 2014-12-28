@@ -74,6 +74,15 @@ angular
             controller: 'DashboardCtrl'
           }
         }
+      })
+      .state('private.ads', {
+        url: '/ads',
+        views: {
+          'content': {
+            templateUrl: 'views/ads.html',
+            controller: 'AdsCtrl'
+          }
+        }
       });
     authProvider.init({
       domain: 'gitobi.auth0.com',

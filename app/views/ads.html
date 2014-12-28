@@ -1,0 +1,11 @@
+<p>{{response.status}}</p>
+<form ng-submit="addAd()">
+  <input type="text" ng-model="newAd.lead" size="30" placeholder="リード">
+  <input class="btn btn-primary" type="submit" value="作成する">
+</form>
+
+<ul>
+  <li ng-repeat="ad in ads">
+    <p>{{ad.lead}}</p>
+  </li>
+</ul>
