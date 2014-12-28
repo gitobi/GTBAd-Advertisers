@@ -17,8 +17,23 @@ angular.module('gtbadAdvertisersApp')
         function(ad) {
           $scope.ads.unshift(ad);
           $scope.newAd = new Ad();
+          $scope.message = 'created';
         },
         // Error callbacks
+        function(response) {
+          $scope.response = response;
+        }
+      );
+    };
+    $scope.deleteAd = function(ad) {
+      Ad.remove(ad).$promise.then(
+        function() {
+          var index = $scope.ads.indexOf(ad);
+          if (index >= 0) {
+            $scope.ads.splice(index, 1);
+          }
+          $scope.message = 'removed';
+        },
         function(response) {
           $scope.response = response;
         }
