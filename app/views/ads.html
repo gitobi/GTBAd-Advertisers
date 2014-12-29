@@ -1,0 +1,12 @@
+<p>{{response.status}}</p>
+<p>{{message}}</p>
+<form ng-submit="addAd()">
+  <input type="text" ng-model="newAd.lead" size="30" placeholder="リード">
+  <input type="submit" class="btn btn-primary" value="作成する">
+</form>
+
+<ul>
+  <li ng-repeat="ad in ads">
+    <p><a ui-sref="private.ads.detail({ id: ad.id })">{{ad.lead}}</a><button type="button" class="btn btn-danger btn-xs" ng-click="deleteAd(ad)" >削除する</button></p>
+  </li>
+</ul>

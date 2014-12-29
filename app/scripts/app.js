@@ -14,23 +14,23 @@ angular
     'angular-storage',
     'angular-jwt',
     'ui.router',
+    'restangular',
     'ngAnimate',
     'ngCookies',
-    'ngResource',
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('public', {
         views: {
           'main-container': {
-            templateUrl: 'views/layouts/public-main-container.html'          },
+            templateUrl: 'views/layouts/public-main-container.html'
+          },
           'header-menu': {
             templateUrl: 'views/layouts/public-header-menu.html',
             controller: 'HeaderCtrl'
-
           }
         }
       })
@@ -59,7 +59,6 @@ angular
           'header-menu': {
             templateUrl: 'views/layouts/private-header-menu.html',
             controller: 'HeaderCtrl'
-
           }
         },
         data: {
@@ -74,7 +73,28 @@ angular
             controller: 'DashboardCtrl'
           }
         }
+      })
+      .state('private.ads', {
+        abstract: true,
+        url: '/ads',
+        views: {
+          'content': {
+            template: '<div ui-view></div>'
+          }
+        }
+      })
+      .state('private.ads.index', {
+        url: '',
+        templateUrl: 'views/ads.html',
+        controller: 'AdsCtrl'
+      })
+      .state('private.ads.detail', {
+        url: '/:id',
+        templateUrl: 'views/ads.detail.html',
+        controller: 'AdsCtrl'
       });
+    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setRequestSuffix('.json');
     authProvider.init({
       domain: 'gitobi.auth0.com',
       clientID: 'ysqq8S9N9pwsxGmYHmmJ161Tt2ri9rZJ',

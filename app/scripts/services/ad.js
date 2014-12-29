@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name gtbadAdvertisersApp.Session
+ * @name gtbadAdvertisersApp.Ad
  * @description
- * # Session
+ * # Ad
  * Factory in the gtbadAdvertisersApp.
  */
 angular.module('gtbadAdvertisersApp')
-  .factory('Session', function (Restangular) {
-    return Restangular.service('session');
+  .factory('Ad', function (Restangular) {
+    return Restangular.service('ads');
   });
