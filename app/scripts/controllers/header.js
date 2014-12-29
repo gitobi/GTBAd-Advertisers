@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name gtbadAdvertisersApp.controller:HeaderCtrl
+ * @name goyoukikiApp.controller:HeaderCtrl
  * @description
  * # HeaderCtrl
- * Controller of the gtbadAdvertisersApp
+ * Controller of the goyoukikiApp.
  */
-angular.module('gtbadAdvertisersApp')
+angular.module('goyoukikiApp')
   .controller('HeaderCtrl', function (auth, store, $location, $scope, Session) {
     $scope.login = function() {
       auth.signin({

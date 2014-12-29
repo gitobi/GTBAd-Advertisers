@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name gtbadAdvertisersApp
+ * @name goyoukikiApp
  * @description
- * # gtbadAdvertisersApp
+ * # goyoukikiApp
  *
  * Main module of the application.
  */
 angular
-  .module('gtbadAdvertisersApp', [
+  .module('goyoukikiApp', [
     'auth0',
     'angular-storage',
     'angular-jwt',
@@ -74,24 +74,24 @@ angular
           }
         }
       })
-      .state('private.ads', {
+      .state('private.leaflets', {
         abstract: true,
-        url: '/ads',
+        url: '/leaflets',
         views: {
           'content': {
             template: '<div ui-view></div>'
           }
         }
       })
-      .state('private.ads.index', {
+      .state('private.leaflets.index', {
         url: '',
-        templateUrl: 'views/ads.html',
-        controller: 'AdsCtrl'
+        templateUrl: 'views/leaflets.html',
+        controller: 'LeafletsCtrl'
       })
-      .state('private.ads.detail', {
+      .state('private.leaflets.detail', {
         url: '/:id',
-        templateUrl: 'views/ads.detail.html',
-        controller: 'AdsCtrl'
+        templateUrl: 'views/leaflets.detail.html',
+        controller: 'LeafletsCtrl'
       });
     RestangularProvider.setBaseUrl('http://localhost:3000');
     RestangularProvider.setRequestSuffix('.json');

@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name gtbadAdvertisersApp.controller:DashboardCtrl
+ * @name goyoukikiApp.controller:DashboardCtrl
  * @description
  * # DashboardCtrl
- * Controller of the gtbadAdvertisersApp
+ * Controller of the goyoukikiApp.
  */
-angular.module('gtbadAdvertisersApp')
-  .controller('DashboardCtrl', function ($scope, auth, Ad) {
+angular.module('goyoukikiApp')
+  .controller('DashboardCtrl', function ($scope, auth, Leaflet) {
     $scope.auth = auth;
-    $scope.ads = Ad.getList().$object;
+    $scope.leaflets = Leaflet.getList().$object;
   });
