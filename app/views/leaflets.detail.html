@@ -3,13 +3,13 @@
 <div class="row">
   <div class="col-sm-6">
     <h1>編集エリア</h1>
-    <form ng-submit="editAd(ad)">
-      <input type="text" ng-model="ad.lead" size="30" placeholder="リード">
+    <form ng-submit="editLeaflet(leaflet)">
+      <input type="text" ng-model="leaflet.lead" size="30" placeholder="リード">
       <input type="submit" class="btn btn-primary" value="更新する">
     </form>
   </div>
   <div class="col-sm-6">
     <h1>プレビュー</h1>
-    <p>{{ad.lead}}</p>
+    <p>{{leaflet.lead}}</p>
   </div>
 </div>

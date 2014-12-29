@@ -425,14 +425,14 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          bucket: 'advertisers.kanban.gallery'
+          bucket: 'kari.kanban.gallery'
         },
         cwd: '<%= yeoman.dist %>',
         src: '**'
       },
       staging: {
         options: {
-          bucket: 'advertisers-staging.kanban.gallery'
+          bucket: 'kari-staging.kanban.gallery'
         },
         cwd: '<%= yeoman.dist %>',
         src: '**'

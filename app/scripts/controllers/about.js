@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name gtbadAdvertisersApp.controller:AboutCtrl
+ * @name goyoukikiApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the gtbadAdvertisersApp
+ * Controller of the goyoukikiApp.
  */
-angular.module('gtbadAdvertisersApp')
+angular.module('goyoukikiApp')
   .controller('AboutCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
