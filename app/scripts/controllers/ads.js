@@ -11,7 +11,11 @@ angular.module('gtbadAdvertisersApp')
   .controller('AdsCtrl', function ($scope, $stateParams, Ad) {
     $scope.ads = Ad.getList().$object;
     if ($stateParams.id) {
-      $scope.ad = Ad.one($stateParams.id).get().$object;
+      Ad.one($stateParams.id).get().then(
+        function(ad) {
+          $scope.ad = ad;
+        }
+      );
     }
     $scope.addAd = function() {
       Ad.post($scope.newAd).then(
@@ -35,6 +39,16 @@ angular.module('gtbadAdvertisersApp')
             $scope.ads.splice(index, 1);
           }
           $scope.message = 'removed';
+        },
+        function(response) {
+          $scope.response = response;
+        }
+      );
+    };
+    $scope.editAd = function(ad) {
+      ad.put().then(
+        function() {
+          $scope.message = 'updated';
         },
         function(response) {
           $scope.response = response;
