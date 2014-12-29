@@ -26,11 +26,11 @@ angular
       .state('public', {
         views: {
           'main-container': {
-            templateUrl: 'views/layouts/public-main-container.html'          },
+            templateUrl: 'views/layouts/public-main-container.html'
+          },
           'header-menu': {
             templateUrl: 'views/layouts/public-header-menu.html',
             controller: 'HeaderCtrl'
-
           }
         }
       })
@@ -59,7 +59,6 @@ angular
           'header-menu': {
             templateUrl: 'views/layouts/private-header-menu.html',
             controller: 'HeaderCtrl'
-
           }
         },
         data: {
@@ -76,13 +75,23 @@ angular
         }
       })
       .state('private.ads', {
+        abstract: true,
         url: '/ads',
         views: {
           'content': {
-            templateUrl: 'views/ads.html',
-            controller: 'AdsCtrl'
+            template: '<div ui-view></div>'
           }
         }
+      })
+      .state('private.ads.index', {
+        url: '',
+        templateUrl: 'views/ads.html',
+        controller: 'AdsCtrl'
+      })
+      .state('private.ads.detail', {
+        url: '/:id',
+        templateUrl: 'views/ads.detail.html',
+        controller: 'AdsCtrl'
       });
     authProvider.init({
       domain: 'gitobi.auth0.com',

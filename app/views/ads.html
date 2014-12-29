@@ -7,6 +7,6 @@
 
 <ul>
   <li ng-repeat="ad in ads">
-    <p>{{ad.lead}}<button type="button" class="btn btn-danger btn-xs" ng-click="deleteAd(ad)" >削除する</button></p>
+    <p><a ui-sref="private.ads.detail({ id: ad.id })">{{ad.lead}}</a><button type="button" class="btn btn-danger btn-xs" ng-click="deleteAd(ad)" >削除する</button></p>
   </li>
 </ul>

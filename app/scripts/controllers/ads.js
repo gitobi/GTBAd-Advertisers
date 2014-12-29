@@ -8,8 +8,11 @@
  * Controller of the gtbadAdvertisersApp
  */
 angular.module('gtbadAdvertisersApp')
-  .controller('AdsCtrl', function ($scope, Ad) {
+  .controller('AdsCtrl', function ($scope, $stateParams, Ad) {
     $scope.ads = Ad.query();
+    if ($stateParams.id) {
+      $scope.ad = Ad.get($stateParams);
+    }
     $scope.newAd = new Ad();
     $scope.addAd = function() {
       $scope.newAd.$save().then(
