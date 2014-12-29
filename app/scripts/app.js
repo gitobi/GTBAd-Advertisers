@@ -14,13 +14,13 @@ angular
     'angular-storage',
     'angular-jwt',
     'ui.router',
+    'restangular',
     'ngAnimate',
     'ngCookies',
-    'ngResource',
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('public', {
@@ -93,6 +93,8 @@ angular
         templateUrl: 'views/ads.detail.html',
         controller: 'AdsCtrl'
       });
+    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setRequestSuffix('.json');
     authProvider.init({
       domain: 'gitobi.auth0.com',
       clientID: 'ysqq8S9N9pwsxGmYHmmJ161Tt2ri9rZJ',

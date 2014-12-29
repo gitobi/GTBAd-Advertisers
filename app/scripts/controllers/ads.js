@@ -9,17 +9,16 @@
  */
 angular.module('gtbadAdvertisersApp')
   .controller('AdsCtrl', function ($scope, $stateParams, Ad) {
-    $scope.ads = Ad.query();
+    $scope.ads = Ad.getList().$object;
     if ($stateParams.id) {
-      $scope.ad = Ad.get($stateParams);
+      $scope.ad = Ad.one($stateParams.id).get().$object;
     }
-    $scope.newAd = new Ad();
     $scope.addAd = function() {
-      $scope.newAd.$save().then(
+      Ad.post($scope.newAd).then(
         // Success callbacks
         function(ad) {
           $scope.ads.unshift(ad);
-          $scope.newAd = new Ad();
+          $scope.newAd = '';
           $scope.message = 'created';
         },
         // Error callbacks
@@ -29,7 +28,7 @@ angular.module('gtbadAdvertisersApp')
       );
     };
     $scope.deleteAd = function(ad) {
-      Ad.remove(ad).$promise.then(
+      ad.remove().then(
         function() {
           var index = $scope.ads.indexOf(ad);
           if (index >= 0) {

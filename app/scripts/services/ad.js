@@ -8,6 +8,6 @@
  * Factory in the gtbadAdvertisersApp.
  */
 angular.module('gtbadAdvertisersApp')
-  .factory('Ad', function ($resource) {
-    return $resource('http://localhost:3000/ads/:id');
+  .factory('Ad', function (Restangular) {
+    return Restangular.service('ads');
   });

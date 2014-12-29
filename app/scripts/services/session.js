@@ -8,6 +8,6 @@
  * Factory in the gtbadAdvertisersApp.
  */
 angular.module('gtbadAdvertisersApp')
-  .factory('Session', function ($resource) {
-    return $resource('https://gtbad-management-api.herokuapp.com/session');
+  .factory('Session', function (Restangular) {
+    return Restangular.service('session');
   });
