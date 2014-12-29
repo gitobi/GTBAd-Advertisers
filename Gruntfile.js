@@ -347,6 +347,14 @@ module.exports = function (grunt) {
       }
     },
 
+    // Uglify
+    uglify: {
+      options: {
+        mangle: false,
+        compress: false
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
