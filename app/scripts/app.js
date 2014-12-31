@@ -18,9 +18,10 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'config'
   ])
-  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, RestangularProvider, authProvider, $httpProvider, jwtInterceptorProvider, ENV) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
       .state('public', {
@@ -93,7 +94,7 @@ angular
         templateUrl: 'views/leaflets.detail.html',
         controller: 'LeafletsCtrl'
       });
-    RestangularProvider.setBaseUrl('http://localhost:3000');
+    RestangularProvider.setBaseUrl(ENV.apiUrl);
     RestangularProvider.setRequestSuffix('.json');
     authProvider.init({
       domain: 'gitobi.auth0.com',

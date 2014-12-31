@@ -129,6 +129,40 @@ module.exports = function (grunt) {
       }
     },
 
+    // Environment configurations
+    ngconstant: {
+      options: {
+        space: '  ',
+        dest: '.tmp/scripts/config.js',
+        name: 'config',
+      },
+      development: {
+        wrap: '"use strict";\n\n <%= __ngModule %>',
+        constants: {
+          ENV: {
+            name: 'development',
+            apiUrl: 'http://localhost:3000'
+          }
+        }
+      },
+      staging: {
+        constants: {
+          ENV: {
+            name: 'staging',
+            apiUrl: 'https://gtbad-management-api-staging.herokuapp.com'
+          }
+        }
+      },
+      production: {
+        constants: {
+          ENV: {
+            name: 'production',
+            apiUrl: 'https://gtbad-management-api.herokuapp.com'
+          }
+        }
+      }
+    },
+
     // Make sure code styles are up to par and there are no obvious mistakes
     jshint: {
       options: {
@@ -432,7 +466,7 @@ module.exports = function (grunt) {
       },
       staging: {
         options: {
-          bucket: 'kari-staging.kanban.gallery'
+          bucket: 'kari.kanban.gallery'
         },
         cwd: '<%= yeoman.dist %>',
         src: '**'
@@ -443,11 +477,12 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['clean:dist', 'ngconstant:development', 'build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:development',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -470,7 +505,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean:dist',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -495,12 +529,19 @@ module.exports = function (grunt) {
   grunt.registerTask('deploy', function(environment) {
     if (environment === 'production') {
       return grunt.task.run([
+        'clean:dist',
+        'ngconstant:production',
         'build',
-        's3:production'
+        's3:production',
+        'ngconstant:development',
       ]);
     } else if (environment === 'staging') {
       return grunt.task.run([
+        'clean:dist',
+        'ngconstant:staging',
         'build',
+        's3:staging',
+        'ngconstant:development',
       ]);
     } else {
       return grunt.task.run([
