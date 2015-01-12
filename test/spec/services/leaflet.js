@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: Session', function () {
+describe('Service: Leaflet', function () {
 
   // load the service's module
   beforeEach(module('goyoukikiApp'));
 
   // instantiate service
-  var Session;
-  beforeEach(inject(function (_Session_) {
-    Session = _Session_;
+  var Leaflet;
+  beforeEach(inject(function (_Leaflet_) {
+    Leaflet = _Leaflet_;
   }));
 
   it('should do something', function () {
-    expect(!!Session).toBe(true);
+    expect(!!Leaflet).toBe(true);
   });
 
 });

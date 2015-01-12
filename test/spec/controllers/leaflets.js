@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: AdsCtrl', function () {
+describe('Controller: LeafletsCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('gtbadAdvertisersApp'));
+  beforeEach(module('goyoukikiApp'));
 
-  var AdsCtrl,
+  var LeafletsCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    AdsCtrl = $controller('AdsCtrl', {
+    LeafletsCtrl = $controller('LeafletsCtrl', {
       $scope: scope
     });
   }));
