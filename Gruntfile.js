@@ -459,14 +459,14 @@ module.exports = function (grunt) {
       },
       production: {
         options: {
-          bucket: 'kari.kanban.gallery'
+          bucket: 'managers.spheread.com'
         },
         cwd: '<%= yeoman.dist %>',
         src: '**'
       },
       staging: {
         options: {
-          bucket: 'kari.kanban.gallery'
+          bucket: 'managers-staging.spheread.com'
         },
         cwd: '<%= yeoman.dist %>',
         src: '**'
