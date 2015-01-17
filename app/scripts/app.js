@@ -15,6 +15,7 @@ angular
     'angular-jwt',
     'ui.router',
     'restangular',
+    'angularFileUpload',
     'ngAnimate',
     'ngCookies',
     'ngSanitize',
@@ -93,6 +94,20 @@ angular
         url: '/:id',
         templateUrl: 'views/leaflets.detail.html',
         controller: 'LeafletsCtrl'
+      })
+      .state('private.creatives', {
+        abstract: true,
+        url: '/creatives',
+        views: {
+          'content': {
+            template: '<div ui-view></div>'
+          }
+        }
+      })
+      .state('private.creatives.index', {
+        url: '',
+        templateUrl: 'views/creatives.html',
+        controller: 'CreativesCtrl'
       });
     RestangularProvider.setBaseUrl(ENV.apiUrl);
     RestangularProvider.setRequestSuffix('.json');

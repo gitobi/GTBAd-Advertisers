@@ -1,0 +1,9 @@
+<p>{{ newCreative }}</p>
+
+<button ng-file-select ng-model="files" ng-file-change="fileSelected($files, $event)" ng-multiple="true">Attach Any File</button>
+
+<ul>
+  <li ng-repeat="creative in creatives">
+    <img ng-src="{{creative.url}}">
+  </li>
+</ul>
