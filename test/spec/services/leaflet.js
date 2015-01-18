@@ -11,8 +11,4 @@ describe('Service: Leaflet', function () {
     Leaflet = _Leaflet_;
   }));
 
-  it('should do something', function () {
-    expect(!!Leaflet).toBe(true);
-  });
-
 });

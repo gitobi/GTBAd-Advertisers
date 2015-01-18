@@ -11,8 +11,4 @@ describe('Service: Creative', function () {
     Creative = _Creative_;
   }));
 
-  it('should do something', function () {
-    expect(!!Creative).toBe(true);
-  });
-
 });

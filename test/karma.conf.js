@@ -25,6 +25,7 @@ module.exports = function(config) {
       'bower_components/a0-angular-storage/dist/angular-storage.js',
       'bower_components/angular-jwt/dist/angular-jwt.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'bower_components/ng-file-upload/angular-file-upload.js',
       'bower_components/lodash/dist/lodash.js',
       'bower_components/restangular/dist/restangular.js',
       'bower_components/angular-animate/angular-animate.js',
