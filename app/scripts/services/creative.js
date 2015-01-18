@@ -8,6 +8,6 @@
  * Service in the goyoukikiApp.
  */
 angular.module('goyoukikiApp')
-  .service('Creative', function (Restangular) {
+  .factory('Creative', function (Restangular) {
     return Restangular.service('creatives');
   });
