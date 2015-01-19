@@ -38,6 +38,6 @@ angular.module('goyoukikiApp')
         function(response) {
           $scope.response = response;
         }
-      )
+      );
     };
   });
