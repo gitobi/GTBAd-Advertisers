@@ -26,4 +26,18 @@ angular.module('goyoukikiApp')
         );
       }
     });
+    $scope.deleteCreative = function(creative) {
+      creative.remove().then(
+        function() {
+          var index = $scope.creatives.indexOf(creative);
+          if (index >= 0) {
+            $scope.creatives.splice(index, 1);
+          }
+          $scope.message = 'removed';
+        },
+        function(response) {
+          $scope.response = response;
+        }
+      )
+    };
   });
