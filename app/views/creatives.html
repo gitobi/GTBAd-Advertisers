@@ -1,0 +1,11 @@
+<p>{{response.status}}</p>
+<p>{{message}}</p>
+
+<button ng-file-select ng-model="files" ng-file-change="fileSelected($files, $event)" ng-multiple="true">Attach Any File</button>
+
+<ul>
+  <li ng-repeat="creative in creatives">
+    <img ng-src="{{creative.url}}">
+    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteCreative(creative)" >削除する</button>
+  </li>
+</ul>
