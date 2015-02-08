@@ -16,12 +16,11 @@ angular.module('goyoukikiApp')
         var file = $scope.files[i];
         CreativeService.create(file).then(
           function(creative) {
-            console.log('success at creative.js');
-            console.log(creative);
             $scope.creatives.unshift(creative);
+            $scope.message = 'created';
           },
           function(data, status, headers, config) {
-            console.log('error response: ' + data + ' status: ' + status + ' headers: ' + headers + ' config: ' + config);
+            $scope.response = data;
           }
         );
       }

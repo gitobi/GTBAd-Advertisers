@@ -13,9 +13,14 @@ angular.module('goyoukikiApp')
     var getNewCreative = function(file) {
       return Creative.one('new').get().then(
         function(response) {
-          console.log('success get new creative');
-          console.log(response);
-          return { url: response.uploadHostUrl, uploadPath: response.uploadPath, awsAccessKeyId: response.key, policy: response.policy, signature: response.signature, file: file };
+          return {
+            url: response.uploadHostUrl,
+            uploadPath: response.uploadPath,
+            awsAccessKeyId: response.key,
+            policy: response.policy,
+            signature: response.signature,
+            file: file
+          };
         }
       );
     };
@@ -40,8 +45,6 @@ angular.module('goyoukikiApp')
         file: newCreative.file
       }).then(
         function(response) {
-          console.log('success upload to s3');
-          console.log(response);
           return newCreative.url + newCreative.uploadPath + newCreative.file.name;
         }
       );
@@ -50,8 +53,6 @@ angular.module('goyoukikiApp')
     var postCreative = function(url) {
       return Creative.post({ url: url }).then(
         function(response) {
-          console.log('success post creative');
-          console.log(response);
           return response;
         }
       );
