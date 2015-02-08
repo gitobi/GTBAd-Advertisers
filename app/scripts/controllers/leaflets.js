@@ -8,8 +8,13 @@
  * Controller of the goyoukikiApp.
  */
 angular.module('goyoukikiApp')
-  .controller('LeafletsCtrl', function ($scope, $stateParams, Leaflet) {
+  .controller('LeafletsCtrl', function ($scope, $stateParams, Leaflet, Creative) {
     $scope.leaflets = Leaflet.getList().$object;
+    $scope.creatives = Creative.getList().$object;
+    $scope.newLeaflet = {};
+    $scope.selectBumper = function(bumper) {
+      $scope.newLeaflet.bumper_id = bumper.id;
+    };
     if ($stateParams.id) {
       Leaflet.one($stateParams.id).get().then(
         function(leaflet) {
